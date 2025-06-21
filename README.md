@@ -30,6 +30,22 @@
 ![image](https://github.com/user-attachments/assets/9b9dc133-d5cb-41c2-ad77-230dab190801)
 
 </details>
+<details>
+<summary>Neon 데이터베이스</summary>
+
+![image](https://github.com/user-attachments/assets/c0a00fe4-1522-4949-89e1-f0f39aa02e6f)
+
+</details>
+<summary>Vercel 배포</summary>
+
+![image](https://github.com/user-attachments/assets/ac7716f9-8b5a-4eec-8e02-27fbd9b99674)
+
+</details>
+<summary>v0 활용(초기 버전 설계)</summary>
+
+![image](https://github.com/user-attachments/assets/cbe269c8-a8ee-4613-8fe5-db121e94cedf)
+
+</details>
 
 ---
 
