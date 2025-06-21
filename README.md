@@ -1,4 +1,37 @@
-## 오목 온라인 게임 프로젝트
+# [🎲 오목 온라인 게임 프로젝트](https://v0-omok-game.vercel.app)
+![image](https://github.com/user-attachments/assets/40247e2c-db82-4f36-99cf-311b0f501f8f)
+<details>
+<summary>로비 화면</summary>
+
+![image](https://github.com/user-attachments/assets/f41119b8-e172-4364-8e3d-b05410767d52)
+
+</details>
+<details>
+<summary>새 게임룸 만들기</summary>
+   
+![image](https://github.com/user-attachments/assets/e52c8f8b-181a-43e8-b7e0-301a565c62ef)
+
+</details>
+<details>
+<summary>컴퓨터와 대전</summary>
+
+![image](https://github.com/user-attachments/assets/4f5c2c76-4ac0-4de3-ad89-87c956eff066)
+
+</details>
+<details>
+<summary>익명 사용자와 대전</summary>
+
+![image](https://github.com/user-attachments/assets/abddefd3-619c-4e0e-9c6a-cda4cfbfcf58)
+
+</details>
+<details>
+<summary>게임 승리시</summary>
+
+![image](https://github.com/user-attachments/assets/9b9dc133-d5cb-41c2-ad77-230dab190801)
+
+</details>
+
+---
 
 ### 0. 프로젝트 완성도: `35%`
 
@@ -15,12 +48,12 @@
 - 게임룸 삭제 기능 미구현.
 - 이미 한번 생성된 방을 삭제할 수 없음.
 
-**배포 상황**: [오목 배포 페이지](https://v0-omok-game.vercel.app)
+**배포 상황**: [**오목 배포 페이지**](https://v0-omok-game.vercel.app)
 - 배포 페이지에 접속하여 오목을 플레이할 수 있습니다. (단, 타 유저와 같은 게임룸에 입장 가능, 온라인 플레이 불가, 이모지 사용 불가, 컴퓨터와 대결 가능)
 - `Next.js` 프레임워크로 제작하였으며 `Vercel`로 배포하였습니다.
 - 데이터베이스는 `PostgreSQL` 사용했으며, `Next.js`에서 `Prisma` 활용하여 스키마를 관리합니다.
 - DB는 `Neon` 으로 배포하였습니다.
-- 웹페이지 초기 버전은 Vercel의 `v0` 서비스로 제작했습니다. [v0 by Vercel 공식 페이지](https://v0.dev/)
+- 웹페이지 초기 버전은 Vercel의 `v0` 서비스로 제작했습니다. [**v0 by Vercel 공식 페이지**](https://v0.dev/)
 
 **걸린 시간**
 - 설계부터 배포까지 3시간 걸렸습니다.
@@ -37,7 +70,7 @@
 - v0는 월 5달러 상당의 무료 크레딧을 제공하는 것으로 보입니다.
 - `Neon`은 Vercel과 원활하게 호환되는 것 같습니다.
 - Neon DB 서비스와 `Prisma`를 연동하는 건 간편했습니다.
-- `웹소켓`에 대한 이해도가 부족하여 오목 실시간 대결의 흐름을 제대로 캐치하지 못해 프로젝트 진척이 느려진 것 같습니다. [Socket.io 공식 페이지](https://socket.io/)
+- `웹소켓`에 대한 이해도가 부족하여 오목 실시간 대결의 흐름을 제대로 캐치하지 못해 프로젝트 진척이 느려진 것 같습니다. [**Socket.io 공식 페이지**](https://socket.io/)
 - Next.js 클라이언트 컴포넌트와 서버 액션에 대한 이해도가 높아졌습니다. (특히, 로그인 등 보안-인증 관련, DB 작업의 경우는 서버 내부의 로직이 외부에 노출되지 않도록 서버로직을 활용해야 한다는 것입니다.)
 - v0가 제작한 초기 버전 구조를 보며 Next.js의 `Best Practice`에 대해 생각해볼 수 있었습니다. (Vercel이 제작한 서비스이므로 공식문서와 밀접한 관련이 있을 거라고 생각했습니다.)
 - `TypeScript` 프로젝트를 통해 tsconfig 설정 및 타입 지정의 실질적인 경험을 얻었습니다.
@@ -57,7 +90,6 @@
 * **Next.js (App Router)**: 프레임워크 (SSR/SSG, 라우팅)
 * **TypeScript**: 타입스크립트 기반 개발
 * **Tailwind CSS**: 유틸리티 우선 CSS 프레임워크 (빠른 UI 스타일링)
-* **Shadcn/ui**: 재사용 가능한 UI 컴포넌트
 
 **백엔드:**
 * **Next.js (API Routes - App Router 및 Pages Router 혼용)**: API 엔드포인트 및 Socket.IO 서버 호스팅
@@ -94,8 +126,6 @@
 * **방 참여**: 기존 방에 참여 (비밀번호 방 지원).
 * **온라인 멀티플레이**: Socket.IO를 통한 실시간 오목 플레이어 간 대전.
 * **AI 대전 모드**: 컴퓨터 AI와 오목 대결.
-* **게임 상태 동기화**: 착수, 턴 변경, 승패 판정 등 게임 상태 실시간 동기화.
-* **게임 종료/연결 해제 처리**: 플레이어 이탈 및 연결 끊김 시 게임 상태 자동 처리.
 
 ---
 
