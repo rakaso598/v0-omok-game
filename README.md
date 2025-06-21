@@ -2,23 +2,23 @@
 ![image](https://github.com/user-attachments/assets/40247e2c-db82-4f36-99cf-311b0f501f8f)
 <details>
 <summary>로비 화면</summary>
-![image](https://github.com/user-attachments/assets/cf98e350-d883-4e95-bf29-3b5fb5084086)
+![image](https://github.com/user-attachments/assets/6637289c-d013-4511-9de8-c6b20eb71fcd)
 </details>
 <details>
 <summary>새 게임룸 만들기</summary>
-![image](https://github.com/user-attachments/assets/a0bd840e-0863-406e-9c6d-d747392e5c72)
+![image](https://github.com/user-attachments/assets/4b8bbba7-d710-4948-a997-a226553fdfe1)
 </details>
 <details>
-<summary>컴퓨터와 대결</summary>
-![image](https://github.com/user-attachments/assets/a2b1665e-b623-4b71-98d6-5bcdf4674bab)
+<summary>컴퓨터와 대전</summary>
+![image](https://github.com/user-attachments/assets/48ec5a7d-38d6-493f-beb2-a08f8b9a0993)
 </details>
 <details>
-<summary>익명 사용자와 대결</summary>
-![image](https://github.com/user-attachments/assets/aa455106-3142-4fcd-a5da-078992322494)
+<summary>익명 사용자와 대전</summary>
+![image](https://github.com/user-attachments/assets/519e3eb3-3495-4fd9-a46a-0b00942f91a9)
 </details>
 <details>
 <summary>게임 승리시</summary>
-![image](https://github.com/user-attachments/assets/bb39b8f5-5f09-4d83-836d-6b2bed2e5f2c)
+![image](https://github.com/user-attachments/assets/d52489d2-94b4-4470-926a-6b4b4a0528bc)
 </details>
 
 ---
