@@ -104,11 +104,11 @@ export default function LobbyPage({ onStartGame, onBack }: LobbyPageProps) {
       console.log('Lobby Socket.IO 연결 성공:', socket.id);
     });
 
-    socket.on('disconnect', (reason) => {
+    socket.on('disconnect', (reason: any) => {
       console.log('Lobby Socket.IO 연결 해제:', reason);
     });
 
-    socket.on('connect_error', (error) => {
+    socket.on('connect_error', (error: any) => {
       console.error('Lobby Socket.IO 연결 오류:', error);
       setError('Socket.IO 연결에 실패했습니다. (콘솔 확인)'); // 사용자에게 알림
     });

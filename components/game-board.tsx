@@ -129,7 +129,7 @@ export default function GameBoard({ board, onCellClick, disabled = false }: Game
         {/* 이 부분은 각 셀의 중앙 좌표를 계산하여 절대 위치로 배치해야 합니다. */}
         {/* 각 셀의 크기를 계산: boardWidth / BOARD_SIZE (e.g., 600px / 15 = 40px) */}
         {/* 화점 위치 [3,3], [3,11], [11,3], [11,11], [7,7] */}
-        {[
+        {/* {[
           [3, 3], [3, 11], [11, 3], [11, 11], [7, 7],
         ].map(([gx, gy], index) => (
           <div
@@ -144,7 +144,7 @@ export default function GameBoard({ board, onCellClick, disabled = false }: Game
               zIndex: 10, // 돌보다 아래에, 선보다 위에 위치
             }}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   )
