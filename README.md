@@ -2,11 +2,15 @@
 ![image](https://github.com/user-attachments/assets/40247e2c-db82-4f36-99cf-311b0f501f8f)
 <details>
 <summary>로비 화면</summary>
-![image](https://github.com/user-attachments/assets/6637289c-d013-4511-9de8-c6b20eb71fcd)
+
+![image](https://github.com/user-attachments/assets/f41119b8-e172-4364-8e3d-b05410767d52)
+
 </details>
 <details>
 <summary>새 게임룸 만들기</summary>
-![image](https://github.com/user-attachments/assets/4b8bbba7-d710-4948-a997-a226553fdfe1)
+   
+![image](https://github.com/user-attachments/assets/e52c8f8b-181a-43e8-b7e0-301a565c62ef)
+
 </details>
 <details>
 <summary>컴퓨터와 대전</summary>
