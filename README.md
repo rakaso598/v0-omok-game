@@ -1,15 +1,29 @@
-![image](https://github.com/user-attachments/assets/40247e2c-db82-4f36-99cf-311b0f501f8f)
 # 오목 온라인 게임 프로젝트
+![image](https://github.com/user-attachments/assets/40247e2c-db82-4f36-99cf-311b0f501f8f)
+<details>
+<summary>로비 화면</summary>
+![image](https://github.com/user-attachments/assets/cf98e350-d883-4e95-bf29-3b5fb5084086)
+</details>
+<details>
+<summary>새 게임룸 만들기</summary>
+![image](https://github.com/user-attachments/assets/a0bd840e-0863-406e-9c6d-d747392e5c72)
+</details>
+<details>
+<summary>컴퓨터와 대결</summary>
+![image](https://github.com/user-attachments/assets/a2b1665e-b623-4b71-98d6-5bcdf4674bab)
+</details>
+<details>
+<summary>익명 사용자와 대결</summary>
+![image](https://github.com/user-attachments/assets/aa455106-3142-4fcd-a5da-078992322494)
+</details>
+<details>
+<summary>게임 승리시</summary>
+![image](https://github.com/user-attachments/assets/bb39b8f5-5f09-4d83-836d-6b2bed2e5f2c)
+</details>
 
 ---
 
 ### 0. 프로젝트 완성도: `35%`
-
-- 로비 화면
-![image](https://github.com/user-attachments/assets/cf98e350-d883-4e95-bf29-3b5fb5084086)
-
-- 새 게임룸 만들기
-![image](https://github.com/user-attachments/assets/a0bd840e-0863-406e-9c6d-d747392e5c72)
 
 **구현한 기능**
 - 로비에서 타 유저가 생성한 게임룸 조회 가능. (대기중인지, 게임중인지 상태 확인 가능)
@@ -50,17 +64,6 @@
 - Next.js 클라이언트 컴포넌트와 서버 액션에 대한 이해도가 높아졌습니다. (특히, 로그인 등 보안-인증 관련, DB 작업의 경우는 서버 내부의 로직이 외부에 노출되지 않도록 서버로직을 활용해야 한다는 것입니다.)
 - v0가 제작한 초기 버전 구조를 보며 Next.js의 `Best Practice`에 대해 생각해볼 수 있었습니다. (Vercel이 제작한 서비스이므로 공식문서와 밀접한 관련이 있을 거라고 생각했습니다.)
 - `TypeScript` 프로젝트를 통해 tsconfig 설정 및 타입 지정의 실질적인 경험을 얻었습니다.
-
----
-
-- 컴퓨터와의 대결
-![image](https://github.com/user-attachments/assets/a2b1665e-b623-4b71-98d6-5bcdf4674bab)
-
-- 익명 사용자와 대결
-![image](https://github.com/user-attachments/assets/aa455106-3142-4fcd-a5da-078992322494)
-
-- 게임 승리 시
-![image](https://github.com/user-attachments/assets/bb39b8f5-5f09-4d83-836d-6b2bed2e5f2c)
 
 ---
 
