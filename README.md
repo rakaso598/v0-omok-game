@@ -1,4 +1,4 @@
-# 오목 온라인 게임 프로젝트
+# [🎲 오목 온라인 게임 프로젝트](https://v0-omok-game.vercel.app)
 ![image](https://github.com/user-attachments/assets/40247e2c-db82-4f36-99cf-311b0f501f8f)
 <details>
 <summary>로비 화면</summary>
