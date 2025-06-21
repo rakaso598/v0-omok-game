@@ -37,12 +37,6 @@
 
 </details>
 <details>
-<summary>Neon 데이터베이스</summary>
-
-![image](https://github.com/user-attachments/assets/c0a00fe4-1522-4949-89e1-f0f39aa02e6f)
-
-</details>
-<details>
 <summary>Verel 배포</summary>
 
 ![image](https://github.com/user-attachments/assets/dfa5e23c-f513-462d-be79-89f693102dc1)
