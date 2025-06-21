@@ -14,15 +14,21 @@
 </details>
 <details>
 <summary>컴퓨터와 대전</summary>
-![image](https://github.com/user-attachments/assets/48ec5a7d-38d6-493f-beb2-a08f8b9a0993)
+
+![image](https://github.com/user-attachments/assets/4f5c2c76-4ac0-4de3-ad89-87c956eff066)
+
 </details>
 <details>
 <summary>익명 사용자와 대전</summary>
-![image](https://github.com/user-attachments/assets/519e3eb3-3495-4fd9-a46a-0b00942f91a9)
+
+![image](https://github.com/user-attachments/assets/abddefd3-619c-4e0e-9c6a-cda4cfbfcf58)
+
 </details>
 <details>
 <summary>게임 승리시</summary>
-![image](https://github.com/user-attachments/assets/d52489d2-94b4-4470-926a-6b4b4a0528bc)
+
+![image](https://github.com/user-attachments/assets/9b9dc133-d5cb-41c2-ad77-230dab190801)
+
 </details>
 
 ---
