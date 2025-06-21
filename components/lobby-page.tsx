@@ -81,45 +81,118 @@ export default function LobbyPage({ onStartGame, onBack }: LobbyPageProps) {
 
   const loadRoomList = () => {
     // 백엔드 연동 필요: 방 목록 로드 및 웹소켓 실시간 업데이트 설정
+    //
+    // 1. 초기 방 목록 로드
+    // fetch('/api/rooms/list')
+    //   .then(response => response.json())
+    //   .then(data => setRooms(data.rooms))
+    //   .catch(error => console.error('방 목록 로드 오류:', error))
+    //
+    // 2. 웹소켓 연결 및 실시간 업데이트
+    // const socket = io(process.env.NEXT_PUBLIC_SITE_URL, { path: '/api/socket' })
+    //
+    // socket.on('room-created', (newRoom) => {
+    //   setRooms(prev => [newRoom, ...prev])
+    // })
+    //
+    // socket.on('room-updated', (updatedRoom) => {
+    //   setRooms(prev => prev.map(room =>
+    //     room.id === updatedRoom.id ? updatedRoom : room
+    //   ))
+    // })
+    //
+    // socket.on('room-deleted', (roomId) => {
+    //   setRooms(prev => prev.filter(room => room.id !== roomId))
+    // })
+
     console.log("방 목록 로드 중...")
   }
 
-  const onCreateRoomSubmit = () => {
+  const onCreateRoomSubmit = async () => {
     if (!roomTitle.trim()) return
 
-    // 백엔드 연동 필요: 새로운 게임 방 생성
-    // API 호출: /api/rooms/create
-    // 전송 데이터: { title: roomTitle, password: roomPassword, gameMode, creatorNickname: userNickname }
-    // 데이터베이스(Prisma Room 모델)에 방 정보 저장
-    console.log("방 생성:", { roomTitle, roomPassword, gameMode })
+    try {
+      // 백엔드 연동 필요: 새로운 게임 방 생성
+      // const response = await fetch('/api/rooms/create', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     title: roomTitle,
+      //     password: roomPassword,
+      //     gameMode,
+      //     creatorNickname: userNickname
+      //   })
+      // })
+      //
+      // if (!response.ok) {
+      //   throw new Error('방 생성에 실패했습니다.')
+      // }
+      //
+      // const result = await response.json()
 
-    setShowCreateModal(false)
-    setRoomTitle("")
-    setRoomPassword("")
+      console.log("방 생성:", { roomTitle, roomPassword, gameMode })
 
-    // 방 생성 후 바로 게임 화면으로 이동
-    onStartGame({
-      roomId: "new-room",
-      gameMode,
-      isHost: true,
-      playerNickname: userNickname,
-    })
+      setShowCreateModal(false)
+      setRoomTitle("")
+      setRoomPassword("")
+
+      // 방 생성 후 바로 게임 화면으로 이동
+      onStartGame({
+        roomId: "new-room",
+        gameMode,
+        isHost: true,
+        playerNickname: userNickname,
+      })
+    } catch (error) {
+      // 방 생성 실패 시 에러 처리
+      console.error("방 생성 오류:", error)
+      // 커스텀 모달로 에러 알림
+      // setShowErrorModal(true)
+      // setErrorMessage('방 생성 중 오류가 발생했습니다. 다시 시도해주세요.')
+    }
   }
 
-  const onJoinRoom = (room: Room) => {
+  const onJoinRoom = async (room: Room) => {
     if (room.status === "playing") return
 
-    // 백엔드 연동 필요: 특정 방 참여 요청
-    // API 호출: /api/rooms/join
-    // 웹소켓을 통한 실시간 방 상태 업데이트
-    console.log("방 참여:", room.id)
+    try {
+      // 백엔드 연동 필요: 특정 방 참여 요청
+      // 비밀번호가 있는 방의 경우 비밀번호 입력 모달 표시
+      // if (room.hasPassword) {
+      //   const password = await showPasswordModal()
+      //   if (!password) return
+      // }
 
-    onStartGame({
-      roomId: room.id,
-      gameMode: room.gameMode,
-      isHost: false,
-      playerNickname: userNickname,
-    })
+      // const response = await fetch('/api/rooms/join', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     roomId: room.id,
+      //     userId: userNickname,
+      //     password: room.hasPassword ? password : undefined
+      //   })
+      // })
+      //
+      // if (!response.ok) {
+      //   const error = await response.json()
+      //   throw new Error(error.message || '방 참여에 실패했습니다.')
+      // }
+
+      console.log("방 참여:", room.id)
+
+      onStartGame({
+        roomId: room.id,
+        gameMode: room.gameMode,
+        isHost: false,
+        playerNickname: userNickname,
+      })
+    } catch (error) {
+      // 방 참여 실패 시 에러 처리
+      console.error("방 참여 오류:", error)
+      // 커스텀 모달로 에러 알림
+      // setShowErrorModal(true)
+      // setErrorMessage(error.message || '방 참여 중 오류가 발생했습니다.')
+    }
   }
 
   return (

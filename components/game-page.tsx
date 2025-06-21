@@ -29,6 +29,11 @@ export default function GamePage({ gameData, onBackToLobby }: GamePageProps) {
   const [showLeaveModal, setShowLeaveModal] = useState(false)
   const [showGameEndModal, setShowGameEndModal] = useState(false)
   const [isAiThinking, setIsAiThinking] = useState(false)
+  const [connectionStatus, setConnectionStatus] = useState<"connecting" | "connected" | "disconnected" | "error">(
+    "connecting",
+  )
+  const [showErrorModal, setShowErrorModal] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
 
   // 플레이어 정보
   const [player1] = useState({
@@ -58,41 +63,80 @@ export default function GamePage({ gameData, onBackToLobby }: GamePageProps) {
 
   const setupWebSocketConnection = () => {
     // 백엔드 연동 필요: 웹소켓 서버 연결
+    // Socket.IO 클라이언트 초기화 예시:
+    // const socket = io(process.env.NEXT_PUBLIC_SITE_URL, { path: '/api/socket' })
+
+    // 웹소켓 연결 상태 관리
+    // setConnectionStatus('connecting')
+
+    // 연결 성공 시
+    // socket.on('connect', () => {
+    //   setConnectionStatus('connected')
+    //   socket.emit('join-room', gameData?.roomId)
+    // })
+
+    // 연결 실패 및 에러 처리
+    // socket.on('connect_error', (error) => {
+    //   setConnectionStatus('error')
+    //   // 커스텀 모달로 연결 오류 알림
+    //   setShowErrorModal(true)
+    //   setErrorMessage('서버 연결에 실패했습니다. 잠시 후 다시 시도해주세요.')
+    // })
+
+    // 재연결 로직
+    // socket.on('reconnect', () => {
+    //   setConnectionStatus('connected')
+    //   // 게임 상태 재동기화 요청
+    //   socket.emit('request-game-state', gameData?.roomId)
+    // })
+
     // 이벤트 리스너: move, game-state, emoticon, player-disconnect 등
     console.log("웹소켓 연결 설정 중...")
   }
 
   const cleanupWebSocketConnection = () => {
     // 백엔드 연동 필요: 웹소켓 연결 정리
+    // socket?.emit('leave-room', gameData?.roomId)
+    // socket?.disconnect()
+    // 모든 이벤트 리스너 제거
+    // socket?.removeAllListeners()
     console.log("웹소켓 연결 해제 중...")
   }
 
-  const onBoardClick = (x: number, y: number) => {
+  const onBoardClick = async (x: number, y: number) => {
     if (board[y][x] !== null || gameStatus !== "playing") return
 
-    // 착수 처리
-    const newBoard = board.map((row) => [...row])
-    newBoard[y][x] = currentTurn
-    setBoard(newBoard)
+    try {
+      // 착수 처리
+      const newBoard = board.map((row) => [...row])
+      newBoard[y][x] = currentTurn
+      setBoard(newBoard)
 
-    // 백엔드 연동 필요: 착수 정보 전송
-    if (gameData?.gameMode === "online") {
-      // 온라인 대전: 웹소켓으로 상대방에게 착수 정보 전송
-      // API 호출: /api/game/move 또는 웹소켓 이벤트
-      // 데이터베이스(Prisma Move 모델)에 착수 기록 저장
-      sendMoveToServer(x, y, currentTurn)
-    } else {
-      // AI 대전: 컴퓨터 턴 처리
-      handleAiTurn(newBoard)
-    }
+      // 백엔드 연동 필요: 착수 정보 전송
+      if (gameData?.gameMode === "online") {
+        // 온라인 대전: 웹소켓으로 상대방에게 착수 정보 전송
+        await sendMoveToServer(x, y, currentTurn)
+      } else {
+        // AI 대전: 컴퓨터 턴 처리
+        await handleAiTurn(newBoard)
+      }
 
-    // 승부 판정
-    if (checkWinner(newBoard, x, y, currentTurn)) {
-      setWinner(currentTurn === "black" ? player1.nickname : player2.nickname)
-      setGameStatus("finished")
-      setShowGameEndModal(true)
-    } else {
-      setCurrentTurn(currentTurn === "black" ? "white" : "black")
+      // 승부 판정
+      if (checkWinner(newBoard, x, y, currentTurn)) {
+        setWinner(currentTurn === "black" ? player1.nickname : player2.nickname)
+        setGameStatus("finished")
+        setShowGameEndModal(true)
+      } else {
+        setCurrentTurn(currentTurn === "black" ? "white" : "black")
+      }
+    } catch (error) {
+      // 착수 처리 실패 시 에러 처리
+      console.error("착수 처리 오류:", error)
+      // 보드 상태 롤백
+      setBoard(board)
+      // 커스텀 모달로 에러 알림
+      // setShowErrorModal(true)
+      // setErrorMessage('착수 처리 중 오류가 발생했습니다.')
     }
   }
 
@@ -102,42 +146,66 @@ export default function GamePage({ gameData, onBackToLobby }: GamePageProps) {
     console.log("착수 전송:", { x, y, stone })
   }
 
-  const handleAiTurn = (currentBoard: Stone[][]) => {
+  const handleAiTurn = async (currentBoard: Stone[][]) => {
     if (gameData?.gameMode !== "ai") return
 
     setIsAiThinking(true)
 
-    // 백엔드 연동 필요: AI 착수 로직
-    // AI 엔진 또는 서버 사이드 AI 로직 호출
-    // 실제 구현에서는 서버에서 AI 착수를 계산하여 반환
-    setTimeout(() => {
-      // 간단한 랜덤 착수 (실제로는 AI 로직으로 대체)
-      const emptyCells = []
-      for (let y = 0; y < 15; y++) {
-        for (let x = 0; x < 15; x++) {
-          if (currentBoard[y][x] === null) {
-            emptyCells.push({ x, y })
+    try {
+      // 백엔드 연동 필요: AI 착수 로직
+      // 옵션 1: 서버 AI 사용 (권장)
+      // const response = await fetch('/api/game/aiMove', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     gameId: gameData?.gameId,
+      //     boardState: currentBoard,
+      //     difficulty: 'medium' // 난이도 설정
+      //   })
+      // })
+      // const aiMove = await response.json()
+
+      // 옵션 2: 클라이언트 AI 사용
+      // const aiMove = calculateAIMove(currentBoard, 'medium')
+      // 클라이언트 AI 라이브러리 예시: minimax 알고리즘, Monte Carlo Tree Search 등
+
+      // 실제 구현에서는 위 로직으로 대체
+      setTimeout(() => {
+        // 임시 랜덤 착수 로직 (개발용)
+        const emptyCells = []
+        for (let y = 0; y < 15; y++) {
+          for (let x = 0; x < 15; x++) {
+            if (currentBoard[y][x] === null) {
+              emptyCells.push({ x, y })
+            }
           }
         }
-      }
 
-      if (emptyCells.length > 0) {
-        const randomMove = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-        const newBoard = currentBoard.map((row) => [...row])
-        newBoard[randomMove.y][randomMove.x] = "white"
-        setBoard(newBoard)
+        if (emptyCells.length > 0) {
+          const randomMove = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+          const newBoard = currentBoard.map((row) => [...row])
+          newBoard[randomMove.y][randomMove.x] = "white"
+          setBoard(newBoard)
 
-        if (checkWinner(newBoard, randomMove.x, randomMove.y, "white")) {
-          setWinner(player2.nickname)
-          setGameStatus("finished")
-          setShowGameEndModal(true)
-        } else {
-          setCurrentTurn("black")
+          if (checkWinner(newBoard, randomMove.x, randomMove.y, "white")) {
+            setWinner(player2.nickname)
+            setGameStatus("finished")
+            setShowGameEndModal(true)
+          } else {
+            setCurrentTurn("black")
+          }
         }
-      }
 
+        setIsAiThinking(false)
+      }, 1500)
+    } catch (error) {
+      // AI 착수 실패 시 에러 처리
+      console.error("AI 착수 오류:", error)
       setIsAiThinking(false)
-    }, 1500)
+      // 커스텀 모달로 에러 알림
+      // setShowErrorModal(true)
+      // setErrorMessage('AI 착수 중 오류가 발생했습니다.')
+    }
   }
 
   const checkWinner = (board: Stone[][], lastX: number, lastY: number, lastStone: Stone): boolean => {
@@ -322,3 +390,23 @@ export default function GamePage({ gameData, onBackToLobby }: GamePageProps) {
     </div>
   )
 }
+
+// 게임 상태 관리 개선 고려사항:
+// 1. useReducer 사용 권장: 복잡한 게임 상태(board, currentTurn, gameStatus, timers 등)를
+//    하나의 reducer로 관리하여 상태 업데이트의 일관성 보장
+// 2. 전역 상태 관리: Zustand, Recoil 등을 사용하여 게임 상태를 전역으로 관리
+// 3. 단일 진실 원천: 모든 게임 상태 변경은 웹소켓을 통해 서버로부터 받은 데이터 기반
+//
+// 예시 reducer 구조:
+// const gameReducer = (state, action) => {
+//   switch (action.type) {
+//     case 'MOVE_MADE':
+//       return { ...state, board: action.board, currentTurn: action.nextTurn }
+//     case 'GAME_ENDED':
+//       return { ...state, gameStatus: 'finished', winner: action.winner }
+//     case 'SYNC_FROM_SERVER':
+//       return { ...state, ...action.serverState }
+//     default:
+//       return state
+//   }
+// }
