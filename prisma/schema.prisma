@@ -9,7 +9,7 @@ datasource db {
 
 // 익명 사용자 모델
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   nickname  String   @unique // 고유한 임시 닉네임
   createdAt DateTime @default(now())
   
@@ -22,7 +22,7 @@ model User {
 
 // 게임 방 모델
 model Room {
-  id                 String   @id @default(cuid())
+  id                 String   @id @default(uuid())
   title              String
   passwordHash       String?  // 비밀번호 없는 경우 null
   status             RoomStatus @default(WAITING)
@@ -39,7 +39,7 @@ model Room {
 
 // 게임 모델
 model Game {
-  id          String     @id @default(cuid())
+  id          String     @id @default(uuid())
   roomId      String
   boardState  String     @default("") // JSON 문자열로 게임판 상태 저장
   currentTurn PlayerColor @default(BLACK)
@@ -58,7 +58,7 @@ model Game {
 
 // 착수 기록 모델
 model Move {
-  id         String   @id @default(cuid())
+  id         String   @id @default(uuid())
   gameId     String
   playerId   String
   x          Int      // 0-14
@@ -75,7 +75,7 @@ model Move {
 
 // 게임 내 플레이어 모델
 model Player {
-  id            String      @id @default(cuid())
+  id            String      @id @default(uuid())
   userId        String
   gameId        String
   color         PlayerColor // BLACK 또는 WHITE
